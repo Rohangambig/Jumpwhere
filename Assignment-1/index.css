@@ -1,0 +1,238 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+    background-color: #15161A;
+}
+
+.container {
+    /* width: 100%; */
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    color: white;
+    position: static;
+}
+
+.container header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
+}
+
+.nav-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-container ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+}
+
+.nav-container ul li {
+    list-style-type: none;
+}
+
+.home-container {
+    width: 50%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:20px;
+    margin: 0 auto;
+    color: white;
+}
+
+.home-container h1 { 
+    font-size: 50px;
+}
+
+.home-container p {
+    width: 75%;
+    text-align: center;
+}
+
+.home-container button {
+    width: fit-content;
+    padding: 15px 20px;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    background-image: linear-gradient(to bottom right,rgb(80, 8, 80),rgb(148, 148, 255),rgb(255, 123, 0));
+}
+
+.home-container button:hover {
+    background-image: linear-gradient(to bottom right,rgb(126, 15, 126),rgb(163, 163, 248),rgb(255, 153, 57));
+}
+
+.background-blur {
+    width: 50vh;
+    height: 50vh;
+    position: absolute;
+    transform: translate(-75%, -30%);
+    border-radius: 50%;
+    border: none;
+    background-image: radial-gradient(rgb(109, 78, 245), rgba(255, 77, 255, 0.8), rgba(184, 9, 184, 0.8));
+    z-index: -100;
+    box-shadow: 
+        0 0 150px 20px rgba(184, 9, 184, 0.8),  
+        0 0 200px 70px rgba(173, 61, 238, 0.8);
+    filter: blur(80px);
+}
+
+.about-container {
+    width: 50%;
+    /* height: 80vh; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:20px;
+    margin: 0 auto;
+    color: white;
+}
+
+.about-container h1 { 
+    font-size: 50px;
+}
+
+.about-container p {
+    width: 75%;
+    text-align: center;
+}
+
+.image-container {
+    padding-top: 100px;
+    color: white;
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0px auto;
+    gap: 80px;
+}
+
+.anchor-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 25px;
+    
+}
+
+.anchor-container p {
+    text-align: center;
+}
+
+.background-blur-2 {
+    width: 50vh;
+    height: 50vh;
+    position: absolute;
+    transform: translate(115%, -30%);
+    border-radius: 50%;
+    border: none;
+    background-image: radial-gradient(rgb(109, 78, 245), rgba(255, 77, 255, 0.8), rgba(184, 9, 184, 0.8));
+    z-index: -100;
+    box-shadow: 
+        0 0 150px 20px rgba(184, 9, 184, 0.8),  
+        0 0 200px 70px rgba(173, 61, 238, 0.8);
+    filter: blur(80px);
+}
+
+.image  img  {
+    border-radius: 20px;
+}
+
+.footer-container {
+    width: 100%;
+    background-color: #1b1b1b;
+    margin-top: 100px;
+    height: 300px;
+    /* border: 1px solid white; */
+    color: white;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+.footer-container p {
+    font-size: 30px;
+}
+
+.footer-container ul {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.footer-container ul  li {
+    list-style-type: none;
+    font-size: 20px;
+}
+
+.order-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    margin: 100px auto;
+    gap: 40px;
+}
+
+.order-list  ol {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content:center;
+    text-align: center;
+    gap: 20px;
+}
+
+.unorder-list  ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content:center;
+    text-align: center;
+    gap: 20px;
+}
+
+.unorder-list {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    margin: 100px auto;
+    gap: 40px;
+    text-align: start;
+}
+
+.unorder-list h1 {
+    text-align: center;
+    font-size: 35px;
+}
+
+.order-list h1 {
+    font-size: 35px;
+}
