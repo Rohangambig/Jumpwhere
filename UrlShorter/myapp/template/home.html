@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <link rel= "stylesheet" href="{% static 'home.css' %}">
+</head>
+<body>
+    <h2>Simple URL Shortener</h2>
+
+    <form id="url_form">
+        {% csrf_token %}
+        <input type="text" id="original_url" placeholder="Enter URL" required>
+        <button type="submit">Shorten</button>
+    </form>
+    
+    <p id="shortened_url"></p>
+
+    <script>
+        document.getElementById("url_form").addEventListener("submit", async function(event) {
+    event.preventDefault();  // Prevent form refresh
+
+    const originalUrl = document.getElementById("original_url").value.trim();  
+    if (!originalUrl) {
+        alert("Please enter a valid URL!");
+        return;
+    }
+
+    const csrfToken = document.querySelector("[name=csrfmiddlewaretoken]").value;
+
+    try {
+        const response = await fetch("/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": csrfToken
+            },
+            body: JSON.stringify({ original_url: originalUrl })
+        });
+
+        console.log("Response status:", response.status);  // Log HTTP status
+        const data = await response.json();
+        console.log("Response JSON:", data);  // Log JSON response
+
+        if (response.ok) {
+            document.getElementById("shortened_url").innerHTML = `Shortened URL: <a href="${data.short_url}" target="_blank">${data.short_url}</a>`;
+        } else {
+            document.getElementById("shortened_url").innerText = "Error: " + data.error;
+        }
+    } catch (error) {
+        console.error("Fetch error:", error);
+    }
+});
+
+    </script>
+</body>
+</html>
