@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{% static 'signup.css' %}">
+</head>
+<body>
+
+    <form id="form">
+        <h3>Register here</h3>
+        {% csrf_token %}
+        <input type="text" name="email" placeholder="Email ID" required>
+        <input type="password" name="password" placeholder="Enter password" required>
+        <button type="submit">Register</button>
+        <span> Already have an account? <a href="{% url 'login' %}" class="login-link">Login here...</a></span>
+    </form>
+
+    <script>
+        document.getElementById('form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+    
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+
+            // Get CSRF token from the page
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+            try {
+                const res = await fetch("/login_user/", {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrfToken  // Send CSRF token
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await res.json();
+
+                if (res.ok) {
+                    localStorage.setItem("authToken", result.token);
+                    localStorage.setItem("tokenExpiry", Date.now() + 24 * 60 * 60 * 1000); // 24 hours
+                    
+                    window.location.href = "/home/";
+                } else {
+                    alert("Invalid email or password");
+                }
+            } catch (err) {
+                alert("Error: " + err);
+            }
+        });
+
+        function checkTokenExpiry() {
+            const expiry = localStorage.getItem("tokenExpiry");
+            if (expiry && Date.now() > expiry) {
+                localStorage.removeItem("authToken");
+                localStorage.removeItem("tokenExpiry");
+                window.location.href = "/login/";
+            }
+        }
+        checkTokenExpiry();
+    </script>
+
+</body>
+</html>

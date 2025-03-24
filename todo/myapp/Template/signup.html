@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'signup.css' %}">
+</head>
+<body>
+    
+    <form id="form" method="POST">
+        <h3>Register here</h3>
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Enter your name">
+        <input type="text" name="email" placeholder="Email ID">
+        <input type="password" name="password" placeholder="Enter password">
+        <button type="submit">Register</button>
+        <span> already have an account? <a href="{% url 'login' %}" class="login-link">login existing account</a></span>
+    </form>
+
+<script>
+    document.getElementById('form').addEventListener('submit',async function(event) {
+        event.preventDefault();  
+
+        const formData = new FormData(this);
+        const data = Object.fromEntries(formData.entries());
+        console.log("Form Data:", data);
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+        try {
+            const res = await fetch("/register/",{
+                method:'POST',
+                headers:{
+                    'Content-type':'application/json',
+                    'X-Csrftoken':csrfToken
+                },
+                body:JSON.stringify(data)
+            })
+
+            
+            const result = await res.json();
+
+            if(res.ok) window.location.href = "/login/"
+            else alert("Error in storing the data");
+
+        }catch(err){
+            alert("err",err)
+        }
+    });
+</script>
+
+</body>
+</html>

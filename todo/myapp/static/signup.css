@@ -1,0 +1,231 @@
+/* Base styling for the form */
+#form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 90%;
+    max-width: 400px;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-out;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+  }
+  
+  /* Heading styling */
+  #form h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: 600;
+    animation: slideDown 0.5s ease-out;
+  }
+  
+  /* Input fields styling */
+  #form input {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid #e1e1e1;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #f9f9f9;
+    outline: none;
+    box-sizing: border-box;
+  }
+  
+  #form input:focus {
+    border-color: #4a6cf7;
+    box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.15);
+    transform: translateY(-2px);
+  }
+  
+  #form input::placeholder {
+    color: #aaa;
+    transition: all 0.3s ease;
+  }
+  
+  #form input:focus::placeholder {
+    opacity: 0.7;
+    transform: translateX(10px);
+  }
+  
+  /* Button styling */
+  #form button {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin-top: 0.5rem;
+    background-color: #4a6cf7;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  #form button:hover {
+    background-color: #3a5ce5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 108, 247, 0.25);
+  }
+  
+  #form button:active {
+    transform: translateY(1px);
+  }
+  
+  /* Button ripple effect */
+  #form button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+  }
+  
+  #form button:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
+  }
+  
+  .login-link {
+    color: #2563ff;
+    text-decoration: underline;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.login-link:hover {
+    color: rgb(4, 22, 119);
+    transform: scale(1.1);
+}
+
+/* Click Effect */
+.login-link:active {
+    transform: scale(0.9);
+}
+
+  /* Form animations */
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes ripple {
+    0% {
+      transform: scale(0, 0);
+      opacity: 0.5;
+    }
+    20% {
+      transform: scale(25, 25);
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0;
+      transform: scale(40, 40);
+    }
+  }
+  
+  /* Form submission animation */
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+  }
+  
+  @keyframes success {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  
+  .form-submitted {
+    animation: success 0.5s ease-out;
+  }
+  
+  .form-error {
+    animation: shake 0.5s ease-in-out;
+  }
+  
+  /* Responsive adjustments */
+  @media screen and (max-width: 480px) {
+    #form {
+      width: 95%;
+      padding: 1.5rem;
+      margin: 1rem auto;
+    }
+    
+    #form h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1.2rem;
+    }
+    
+    #form input {
+      padding: 0.7rem 0.8rem;
+      font-size: 0.95rem;
+      margin-bottom: 0.8rem;
+    }
+    
+    #form button {
+      padding: 0.7rem 0.8rem;
+      font-size: 0.95rem;
+    }
+  }
+  
+  @media screen and (max-width: 320px) {
+    #form {
+      padding: 1.2rem;
+    }
+    
+    #form h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    
+    #form input {
+      padding: 0.6rem 0.7rem;
+      font-size: 0.9rem;
+      margin-bottom: 0.7rem;
+    }
+    
+    #form button {
+      padding: 0.6rem 0.7rem;
+      font-size: 0.9rem;
+    }
+  }
+  
+  /* Touch device optimizations */
+  @media (hover: none) {
+    #form button:hover {
+      transform: none;
+      box-shadow: none;
+    }
+    
+    #form input:focus {
+      transform: none;
+    }
+  }
