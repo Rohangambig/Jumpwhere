@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Meaning Finder</title>
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+</head>
+<body>
+    <form id="form" method="GET">
+        <input id="word" type="text" placeholder="Enter a word">
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Definition:</h2>
+    <p id="definition">Enter a word to see its meaning.</p>
+
+    <script>
+        document.getElementById('form').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            let word = document.getElementById('word').value;
+
+            document.getElementById('definition').innerText = "wait a moment... ";
+            
+            try {
+                let response = await fetch(`/getData/?word=${word}`);
+                let data = await response.json();
+
+                if (data.error) {
+                    document.getElementById('definition').innerText = "Word not found.";
+                    
+                } else {
+                    document.getElementById('definition').innerText = data.definition;
+                    word.value = "";
+                }
+
+            } catch (error) {
+                console.log("Error fetching the result", error);
+                document.getElementById('definition').innerText = "Error fetching data.";
+            }
+        });
+    </script>
+</body>
+</html>
